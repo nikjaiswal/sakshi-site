@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minimum Viable Template | SAKSHI</title>
+<meta name="description" content="A condensed three-domain investigative checklist for community auditors of health AI, fillable in the browser and exportable as Markdown or JSON.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap bar">
+<a class="brand" href="/"><svg class="mark" viewBox="0 0 32 20" width="32" height="20" aria-hidden="true" focusable="false"><path d="M1.5 10C6 3 11 1.5 16 1.5S26 3 30.5 10C26 17 21 18.5 16 18.5S6 17 1.5 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="10" r="3.6" fill="currentColor"/></svg><span>SAKSHI</span></a>
+<nav class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/protocol/">The Protocol</a></li><li><a href="/template/" aria-current="page">Template</a></li><li><a href="/governance/">Governance</a></li><li><a href="/case-study/">Case Study</a></li><li><a href="/profiles/">Profiles</a></li><li><a href="/get-involved/">Get Involved</a></li><li><a href="/about/">About</a></li></ul></nav>
+</div>
+<div class="status-line"><div class="wrap"><p><strong>Status.</strong> SAKSHI is a proposal under development. No profiles have been published, and the framework’s claims have not yet been tested.</p></div></div>
+</header>
+<main id="main" class="wrap" tabindex="-1">
+<p class="eyebrow">Template</p>
+<h1>Minimum Viable Template</h1>
+<p class="lede">A condensed, three-domain investigative checklist for community auditors of health AI. For community auditor use. Not a regulatory instrument.</p>
+
+<div class="toolbar" id="toolbar" hidden>
+  <p class="muted" id="save-state">Entries are saved in this browser only. Nothing is sent anywhere.</p>
+  <div class="cta-row">
+    <button type="button" class="btn secondary" id="export-md">Download as Markdown</button>
+    <button type="button" class="btn secondary" id="export-json">Download as JSON</button>
+    <button type="button" class="btn secondary" id="clear-all">Clear all entries</button>
+  </div>
+</div>
+
+<section id="purpose">
+  <h2>Purpose and how to use this template</h2>
+  <p>This template is the working version of the full SAKSHI checklists. The full instrument runs to more than one hundred items across three domains. That depth is right for a complete profile and too much for a first pass by a small team. This version keeps the highest-signal items so that a group of two or three people can complete a credible draft profile in a single sitting, then expand into the full checklists where a finding warrants it.</p>
+  <p>Accountability for health AI requires looking at the whole ecosystem, not the algorithm alone. A product can carry strong clinical evidence and still operate under a regulatory pathway with no enforcement capacity. A regulator can hold robust standards while the hospital that deploys the product skips procurement. The three domains below are meant to be used together. The gaps between them are where the most important findings appear.</p>
+  <div class="box">
+    <h3>Ethos: there is always an alternative</h3>
+    <p>Low-quality AI is not the only option for underserved populations. The goal of a SAKSHI profile is not to remove a tool and leave a gap. It is to make high-quality, accountable AI the affordable alternative. Investigate in that spirit.</p>
+  </div>
+  <div class="box">
+    <h3>Stance: partner, not prosecutor</h3>
+    <p>SAKSHI engages companies and health systems as partners for patient safety and product improvement. Findings are recorded as flags and open questions until verified, not as accusations. Standard outreach to a company opens with a line of this kind:</p>
+    <blockquote><p>"We are a community of students, clinicians, and researchers organized to support safer health AI deployment. We would like to learn about your product and how it is used. Our goal is to help, not to expose. External scrutiny can help you build a better product."</p></blockquote>
+  </div>
+  <h3>Scoring</h3>
+  <p>Mark each item with one of the following in the Status column.</p>
+  <dl class="qa scoring">
+    <div><dt>Verified</dt><dd>Evidence located and assessed.</dd></div>
+    <div><dt>Unverified</dt><dd>Claimed but not independently confirmed.</dd></div>
+    <div><dt>Absent</dt><dd>Not found despite a reasonable search.</dd></div>
+    <div><dt>Refused</dt><dd>The company or regulator declined to provide it.</dd></div>
+    <div><dt>Not applicable</dt><dd>The item does not apply to this product.</dd></div>
+  </dl>
+  <p>The absence of evidence is itself a finding. Record what you searched and where, so that Absent is defensible rather than a guess.</p>
+  <h3>Method, in brief</h3>
+  <p>Start with public sources: the company website, marketing and investor materials, press coverage, regulatory filings, published papers, and public-records requests where available. Document what is findable and what is missing. Then contact the company directly under the outreach protocol above and record their response.</p>
+  <p>Three checks carry most of the weight in a first pass: whether claims are backed by reproducible, peer-reviewed science; whether performance holds across demographic subgroups; and whether the product was validated in the population where it is actually deployed.</p>
+  <p>This template condenses the four-domain <a href="/protocol/">protocol</a> for a first pass. Domain A covers the clinical evidence audit and the financial disclosure map; Domain B the regulatory pathway analysis; Domain C the deployment setting and patient experience reporting.</p>
+</section>
+
+<section id="setup">
+  <h2>Investigation setup</h2>
+  <p>Complete before you begin. One profile per product.</p>
+  <dl class="qa setup">
+    <div><dt><label for="setup-product">Product / company under review</label></dt><dd><input type="text" id="setup-product" data-field="setup.product"></dd></div>
+    <div><dt><label for="setup-domains">Domain(s) this team is covering</label></dt><dd><input type="text" id="setup-domains" data-field="setup.domains"></dd></div>
+    <div><dt><label for="setup-team">Team members</label></dt><dd><input type="text" id="setup-team" data-field="setup.team"></dd></div>
+    <div><dt><label for="setup-date">Date started</label></dt><dd><input type="date" id="setup-date" data-field="setup.date_started"></dd></div>
+    <div><dt><label for="setup-settings">Deployment setting(s) examined</label></dt><dd><input type="text" id="setup-settings" data-field="setup.settings"></dd></div>
+    <div><dt><label for="setup-sources">Public sources consulted</label></dt><dd><textarea id="setup-sources" rows="3" data-field="setup.sources"></textarea></dd></div>
+    <div><dt><label for="setup-contact">Company contacted? Date and method</label></dt><dd><input type="text" id="setup-contact" data-field="setup.company_contacted"></dd></div>
+  </dl>
+</section>
+
+<section id="domain-a" class="checklist">
+  <h2>Domain A. The company and its product</h2>
+  <p class="lede">What does the company claim, on what evidence, and what can be independently verified?</p>
+  <div class="table-wrap">
+    <table class="items">
+      <thead><tr><th scope="col">Item</th><th scope="col">Checklist item</th><th scope="col">Status</th><th scope="col">Notes and evidence</th></tr></thead>
+      <tbody>
+        <tr data-item="A1"><th scope="row">A1</th><td>Legal name, incorporation date, jurisdiction, and ownership structure including parent companies and subsidiaries.</td><td></td><td></td></tr>
+        <tr data-item="A2"><th scope="row">A2</th><td>Investors and funders. Flag any investor who also operates in the regulatory or policy pathway the product relies on.</td><td></td><td></td></tr>
+        <tr data-item="A3"><th scope="row">A3</th><td>Founding team and board. Is clinical, technical, and ethics expertise present, or absent?</td><td></td><td></td></tr>
+        <tr data-item="A4"><th scope="row">A4</th><td>Exact clinical claims, quoted verbatim from website, pitch decks, press releases, and investor materials.</td><td></td><td></td></tr>
+        <tr data-item="A5"><th scope="row">A5</th><td>Stated intended use: triage, diagnosis, monitoring, decision support, prescribing, or autonomous action. Prescribing and autonomous action sit at the high-risk end and demand the strongest evidence.</td><td></td><td></td></tr>
+        <tr data-item="A6"><th scope="row">A6</th><td>Trust-manufacturing language. Note "AI doctor," "clinically validated," "FDA-reviewed" versus cleared or approved, and any use of official seals, logos, or institutional endorsements.</td><td></td><td></td></tr>
+        <tr data-item="A7"><th scope="row">A7</th><td>Headline figures such as patients helped, lives saved, or sites deployed. Record the source and the independent verifiability of each number.</td><td></td><td></td></tr>
+        <tr data-item="A8"><th scope="row">A8</th><td>Inventory of published evidence: peer-reviewed papers, preprints, white papers, abstracts. Note authorship overlap with company equity holders or staff.</td><td></td><td></td></tr>
+        <tr data-item="A9"><th scope="row">A9</th><td>Validation design: internal versus external, single-site versus multi-site. Is demographic subgroup performance reported, or absent?</td><td></td><td></td></tr>
+        <tr data-item="A10"><th scope="row">A10</th><td>Real-world validation in the actual deployment population, not only the original study population.</td><td></td><td></td></tr>
+        <tr data-item="A11"><th scope="row">A11</th><td>Transparency and engagement: model card or datasheet, registered trials, post-market surveillance, independent-audit policy, and the company response when contacted under the SAKSHI protocol.</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box">
+    <h3>How a first pass reads</h3>
+    <p>An intended use that touches prescribing or autonomous action (A5) sets the evidence bar at its highest. "AI doctor" framing or the use of official imagery (A6) raises endorsement-by-implication questions; record these as flags for verification, not as findings of wrongdoing. A public counter of people helped that cannot be reconciled with independent estimates (A7) is recorded as Unverified pending a documented basis from the company. Where no peer-reviewed external validation in the deployment population can be located (A8, A9), record Absent and offer the company the opportunity to provide it.</p>
+  </div>
+</section>
+
+<section id="domain-b" class="checklist">
+  <h2>Domain B. The regulatory pathway and body</h2>
+  <p class="lede">How did the product enter the market, and can the responsible body provide meaningful oversight?</p>
+  <div class="table-wrap">
+    <table class="items">
+      <thead><tr><th scope="col">Item</th><th scope="col">Checklist item</th><th scope="col">Status</th><th scope="col">Notes and evidence</th></tr></thead>
+      <tbody>
+        <tr data-item="B1"><th scope="row">B1</th><td>Authorization held: FDA 510(k), De Novo, PMA, CE mark, national medical-device or software-as-a-medical-device approval, sandbox exemption, or none.</td><td></td><td></td></tr>
+        <tr data-item="B2"><th scope="row">B2</th><td>Classification avoidance. Is the product positioned as "clinical decision support" or consumer software to stay outside device regulation? Note the gap between marketed function and regulated category.</td><td></td><td></td></tr>
+        <tr data-item="B3"><th scope="row">B3</th><td>If a sandbox or learning-laboratory pathway is used: jurisdiction, conditions, duration, reporting obligations, and the criteria to graduate to full market.</td><td></td><td></td></tr>
+        <tr data-item="B4"><th scope="row">B4</th><td>Cross-border carry-over. Does authorization in one country justify deployment in another, including LMIC settings, or is separate local authorization required?</td><td></td><td></td></tr>
+        <tr data-item="B5"><th scope="row">B5</th><td>Regulator capacity: clinical and data-science staffing, and health-equity expertise.</td><td></td><td></td></tr>
+        <tr data-item="B6"><th scope="row">B6</th><td>Capture and independence: funding from fees paid by regulated companies, a dual mandate to both promote innovation and ensure safety, and revolving-door ties between staff and industry.</td><td></td><td></td></tr>
+        <tr data-item="B7"><th scope="row">B7</th><td>Pre-market rigor: what evidence the regulator required, whether it evaluated that evidence independently or relied on company self-report, and whether subgroup or bias review was required.</td><td></td><td></td></tr>
+        <tr data-item="B8"><th scope="row">B8</th><td>Post-market authority: adverse-event reporting, re-review of model updates, power to suspend or revoke, and any history of enforcement action.</td><td></td><td></td></tr>
+        <tr data-item="B9"><th scope="row">B9</th><td>Transparency and arbitrage: are filings public and obtainable by records request? Is there evidence the deployment jurisdiction was chosen because oversight is weaker?</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box">
+    <h3>How a first pass reads</h3>
+    <p>Where a product operates under a state or national innovation pathway rather than a device authorization (B1, B3), the pathway's conditions, duration, and graduation criteria are the central items to document. Positioning as consumer or decision-support software keeps a product outside conventional device review (B2); the distance between what is marketed and what is regulated is a primary finding. The pathway record is the most productive starting point. Open-records requests are often the main route to primary documents, and the request log itself belongs in the profile (B9).</p>
+  </div>
+</section>
+
+<section id="domain-c" class="checklist">
+  <h2>Domain C. The health system and deployment</h2>
+  <p class="lede">How was the product chosen, integrated, and monitored where it is actually used?</p>
+  <div class="table-wrap">
+    <table class="items">
+      <thead><tr><th scope="col">Item</th><th scope="col">Checklist item</th><th scope="col">Status</th><th scope="col">Notes and evidence</th></tr></thead>
+      <tbody>
+        <tr data-item="C1"><th scope="row">C1</th><td>Procurement: who decided, whether there was a formal process with documented criteria, whether a health technology assessment was conducted, and whether the product was competitively evaluated or sole-sourced.</td><td></td><td></td></tr>
+        <tr data-item="C2"><th scope="row">C2</th><td>Were clinicians who use the product, and patients or community representatives, involved in the selection decision?</td><td></td><td></td></tr>
+        <tr data-item="C3"><th scope="row">C3</th><td>Output mode and authority: alert, recommendation, second opinion, or autonomous action. Can clinicians override without friction?</td><td></td><td></td></tr>
+        <tr data-item="C4"><th scope="row">C4</th><td>Accountability. Who is clinically responsible when the AI is wrong, and is this documented?</td><td></td><td></td></tr>
+        <tr data-item="C5"><th scope="row">C5</th><td>Local validation. Was the product tested on the local population before deployment, and do prevalence and comorbidity profiles match the training data?</td><td></td><td></td></tr>
+        <tr data-item="C6"><th scope="row">C6</th><td>Fit for context: imaging equipment and lab analyzers, language and documentation conventions, and infrastructure such as connectivity and IT support.</td><td></td><td></td></tr>
+        <tr data-item="C7"><th scope="row">C7</th><td>Post-deployment monitoring: defined metrics and cadence, drift detection, and tracking of adverse events, near-misses, and discordant cases.</td><td></td><td></td></tr>
+        <tr data-item="C8"><th scope="row">C8</th><td>Suspension trigger. Is there a defined threshold and a process to withdraw the product if safety signals emerge?</td><td></td><td></td></tr>
+        <tr data-item="C9"><th scope="row">C9</th><td>Contractual protections: access to disaggregated performance data, audit rights, advance notice of model updates, and explicit terms on liability and data ownership.</td><td></td><td></td></tr>
+        <tr data-item="C10"><th scope="row">C10</th><td>Patient consent and grievance: are patients informed AI is involved, is opt-out meaningful, and is there a channel for AI-specific complaints?</td><td></td><td></td></tr>
+        <tr data-item="C11"><th scope="row">C11</th><td>Equity, deskilling, and commercial entanglement: disproportionate harm to subgroups, workforce or training displacement, outputs that steer toward services in which the vendor or its investors hold a financial interest, and, for LMIC deployments, conditions that would not be accepted in the vendor home country.</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box">
+    <h3>Adapting Domain C: direct-to-consumer versus hospital-deployed</h3>
+    <p>A direct-to-consumer product has no hospital procurement committee. The "health system" in that case is the consumer platform itself. The questions still hold: who is accountable when the output is wrong (C4), is there a grievance channel (C10), and does the consumer flow disclose AI involvement and offer a meaningful alternative (C10).</p>
+    <p>Imaging and similar tools deployed through hospitals, often in LMIC settings, take Domain C in full, including local validation (C5), equipment fit (C6), and the LMIC double-standard check (C11).</p>
+  </div>
+</section>
+
+<section id="synthesis">
+  <h2>Synthesis. Reading the gaps</h2>
+  <p>A product can pass each domain on its own and still fail at the seams. After the three domains are drafted, work through the three gaps below. Record each one explicitly, with the evidence on both sides.</p>
+  <ol class="phases gaps">
+    <li>
+      <div>
+        <h3><label for="gap-1">Claim-to-evidence gap (within Domain A)</label></h3>
+        <p>Where does the marketing language exceed what the evidence base supports? Quote the claim and name the missing study.</p>
+        <textarea id="gap-1" rows="4" data-field="synthesis.claim_to_evidence"></textarea>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3><label for="gap-2">Evidence-to-authorization gap (Domain A against Domain B)</label></h3>
+        <p>Did the regulator require what the claim needs, or accept company self-report? A strong claim cleared on thin review is a finding.</p>
+        <textarea id="gap-2" rows="4" data-field="synthesis.evidence_to_authorization"></textarea>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3><label for="gap-3">Authorization-to-deployment gap (Domain B against Domain C)</label></h3>
+        <p>Is the product used in a population, setting, or role that its authorization never covered? Cross-border and off-label-by-context use lives here.</p>
+        <textarea id="gap-3" rows="4" data-field="synthesis.authorization_to_deployment"></textarea>
+      </div>
+    </li>
+  </ol>
+  <div class="box">
+    <h3><label for="summary-finding">Summary finding</label></h3>
+    <p>In two or three sentences, state the most consequential gap this profile surfaced and what verification would resolve it. This is the line that carries into the SAKSHI profile and any outreach.</p>
+    <textarea id="summary-finding" rows="4" data-field="synthesis.summary_finding"></textarea>
+  </div>
+</section>
+
+<p class="note">For community auditor use. Not a regulatory instrument. With JavaScript enabled, entries are saved in this browser and can be downloaded as Markdown or JSON from the toolbar at the top of the page. Without it, the page is a printable checklist. A completed first pass feeds a full profile in the <a href="/profiles/profile-schema.json">profile data format</a>.</p>
+<script src="/assets/template.js"></script>
+
+<aside class="cite" aria-label="Source"><p><span class="cite-label">Source</span> The content on this page is drawn from the SAKSHI paper: Al-Louzi R, Ali HN, Bank AMC, Celi LA, Cocucci C, Gameiro R, Gorijavolu R, Jaiswal N, et al. <cite>SAKSHI: A Community-Operated Investigative Platform for Accountability in Clinical AI Deployment</cite>. COLM 2026, DAIH workshop. <a href="https://openreview.net/forum?id=gnMnqG08xo">OpenReview</a>, <a href="https://openreview.net/pdf?id=gnMnqG08xo">PDF</a>. See <a href="/about/#publications">Publications</a>. The checklist is the SAKSHI Minimum Viable Template, a condensed working version of the full SAKSHI checklists.</p></aside>
+</main>
+<footer class="site-footer">
+<div class="wrap foot">
+<div class="foot-id"><svg class="mark" viewBox="0 0 32 20" width="32" height="20" aria-hidden="true" focusable="false"><path d="M1.5 10C6 3 11 1.5 16 1.5S26 3 30.5 10C26 17 21 18.5 16 18.5S6 17 1.5 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="10" r="3.6" fill="currentColor"/></svg><p><strong>SAKSHI</strong>, a project of MIT Critical Data, Laboratory for Computational Physiology, MIT.</p></div>
+<div class="foot-contact"><p>Contact: <a href="mailto:lcp-sakshi@mit.edu">lcp-sakshi@mit.edu</a> <button type="button" class="copy" data-copy="lcp-sakshi@mit.edu">Copy address</button></p><p><a href="https://github.com/nikjaiswal/sakshi-site">Source and edit history on GitHub</a></p><p>Content licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p></div>
+</div>
+</footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

@@ -24,6 +24,7 @@ const SITE = {
 const NAV = [
   ['/', 'Home'],
   ['/protocol/', 'The Protocol'],
+  ['/template/', 'Template'],
   ['/governance/', 'Governance'],
   ['/case-study/', 'Case Study'],
   ['/profiles/', 'Profiles'],

@@ -29,12 +29,13 @@ contains no sample or placeholder profiles.
 site/                   The website. Plain HTML, one stylesheet, one small script.
   index.html            Home
   protocol/             The Protocol
+  template/             Minimum Viable Template (fillable checklist, saves in the browser)
   governance/           Governance
   case-study/           Case Study (hypothetical composite)
   get-involved/         Get Involved
   about/                About, including Publications
   profiles/             Rendered at build time from profiles-data/ (not committed)
-  assets/               style.css, site.js, mark.svg
+  assets/               style.css, site.js, template.js, mark.svg
   _headers              Security headers served by Cloudflare Pages
   404.html
 profiles-data/          One JSON file per profile. Empty.
