@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Protocol | SAKSHI</title>
+<meta name="description" content="The four-domain SAKSHI investigative protocol: clinical evidence audit, regulatory pathway analysis, financial disclosure map, and patient experience reporting.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap bar">
+<a class="brand" href="/"><svg class="mark" viewBox="0 0 32 20" width="32" height="20" aria-hidden="true" focusable="false"><path d="M1.5 10C6 3 11 1.5 16 1.5S26 3 30.5 10C26 17 21 18.5 16 18.5S6 17 1.5 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="10" r="3.6" fill="currentColor"/></svg><span>SAKSHI</span></a>
+<nav class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/protocol/" aria-current="page">The Protocol</a></li><li><a href="/governance/">Governance</a></li><li><a href="/case-study/">Case Study</a></li><li><a href="/profiles/">Profiles</a></li><li><a href="/get-involved/">Get Involved</a></li><li><a href="/about/">About</a></li></ul></nav>
+</div>
+<div class="status-line"><div class="wrap"><p><strong>Status.</strong> SAKSHI is a proposal under development. No profiles have been published, and the framework’s claims have not yet been tested.</p></div></div>
+</header>
+<main id="main" class="wrap" tabindex="-1">
+<p class="eyebrow">The Protocol</p>
+<h1>Four investigative domains</h1>
+<p class="lede">Each SAKSHI profile applies the same four-domain protocol. Together the domains cover the accountability surface of a health AI deployment: the evidence behind its claims, how it entered the market, the incentives that shape how it behaves, and its effect on the patients who encounter it.</p>
+
+<p>The protocol follows the model of investigative journalism rather than peer review or certification. Peer review and certification depend on the company's cooperation: access to model documentation, validation data, and deployment records. SAKSHI reaches findings whether or not the company engages, working from the public record, regulatory filings, and interviews. When a company does not respond, that silence is itself recorded as a finding.</p>
+
+<div class="domains">
+  <section class="domain" id="clinical-evidence-audit">
+    <h3>1. Clinical evidence audit</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>Published claims against the actual evidence base: registered clinical trials, peer-reviewed validation studies or their absence, and the distance between marketing language and demonstrated performance.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Are there registered trials?</li>
+            <li>Is validation peer-reviewed?</li>
+            <li>Were study populations representative of the deployment context?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="domain" id="regulatory-pathway-analysis">
+    <h3>2. Regulatory pathway analysis</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>How the product entered the market and what oversight it is subject to, including whether it operates under a sandbox exemption or a clearance, and whether the pathway was designed for the kind of clinical autonomy the product now exercises.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Sandbox exemption or clearance?</li>
+            <li>Does clearance from one jurisdiction imply validation in another?</li>
+            <li>Is post-market surveillance in place?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="domain" id="financial-disclosure-map">
+    <h3>3. Financial disclosure map</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>Investor and board relationships, advisory ties, and the incentive structures that may shape the company's behavior and claims.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Do financial arrangements create misaligned incentives?</li>
+            <li>Does government entanglement suppress independent scrutiny?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="domain" id="patient-experience-reporting">
+    <h3>4. Patient experience reporting</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>Informed consent, workflow integration, and recourse mechanisms: how patients interact with the system, whether they understand the role of AI in their care, and whether consent is meaningful or performative.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Do patients know AI is involved in their care?</li>
+            <li>What happens when the clinician disagrees with the output?</li>
+            <li>How can a patient seek recourse?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+</div>
+
+<section id="summary">
+  <h2>The structured summary</h2>
+  <p>Findings across the four domains are drawn together into a structured summary. The profile gives no single numerical score, because a number would imply a precision these judgments do not have. The summary works domain by domain, setting out what evidence exists, what is missing, and what those gaps mean for the deployment under review. The aim is to keep each judgment traceable and comparable from one profile to the next.</p>
+  <p>Comparability across hubs is not assumed to happen on its own. Calibration exercises and a Delphi-based process for setting shared thresholds, described under <a href="/governance/#training">Governance</a>, are meant to keep the four domains assessed on shared grounds as the network of hubs grows. That process is still under development.</p>
+</section>
+
+<section id="technical">
+  <h2>The technical evaluation layer</h2>
+  <p>A technical evaluation layer runs alongside the four domains. It looks at four properties of the deployed model:</p>
+  <ul>
+    <li>calibration;</li>
+    <li>fairness across demographic subgroups;</li>
+    <li>robustness to input variation;</li>
+    <li>performance under dataset shift.</li>
+  </ul>
+  <p>Where they apply, auditors draw on three reporting guidelines. TRIPOD+AI specifies what a clinical prediction model paper needs to disclose. STARD-AI specifies what a diagnostic accuracy study needs to disclose. DECIDE-AI specifies what a clinical decision-support intervention needs to disclose in order to be independently evaluable.</p>
+  <p>Published evidence is judged on how complete and transparent its reporting is, not on the fact of publication. Whether a study exists and whether it supports independent evaluation are kept as separate questions.</p>
+</section>
+
+<section id="in-practice">
+  <h2>The protocol in practice</h2>
+  <p>The <a href="/case-study/">case study</a> walks through all four domains on a hypothetical composite deployment. The data format that a completed profile is recorded in is documented in the <a href="/profiles/profile-schema.json">profile schema</a>.</p>
+</section>
+
+<aside class="cite" aria-label="Source"><p><span class="cite-label">Source</span> The content on this page is drawn from the SAKSHI paper: Al-Louzi R, Ali HN, Bank AMC, Celi LA, Cocucci C, Gameiro R, Gorijavolu R, Jaiswal N, et al. <cite>SAKSHI: A Community-Operated Investigative Platform for Accountability in Clinical AI Deployment</cite>. COLM 2026, DAIH workshop. <a href="https://openreview.net/forum?id=gnMnqG08xo">OpenReview</a>, <a href="https://openreview.net/pdf?id=gnMnqG08xo">PDF</a>. See <a href="/about/#publications">Publications</a>. The domains and key investigative questions are taken from Table 2 of the paper.</p></aside>
+</main>
+<footer class="site-footer">
+<div class="wrap foot">
+<div class="foot-id"><svg class="mark" viewBox="0 0 32 20" width="32" height="20" aria-hidden="true" focusable="false"><path d="M1.5 10C6 3 11 1.5 16 1.5S26 3 30.5 10C26 17 21 18.5 16 18.5S6 17 1.5 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="10" r="3.6" fill="currentColor"/></svg><p><strong>SAKSHI</strong>, a project of MIT Critical Data, Laboratory for Computational Physiology, MIT.</p></div>
+<div class="foot-contact"><p>Contact: <a href="mailto:lcp-sakshi@mit.edu">lcp-sakshi@mit.edu</a> <button type="button" class="copy" data-copy="lcp-sakshi@mit.edu">Copy address</button></p><p>Content licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p></div>
+</div>
+</footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

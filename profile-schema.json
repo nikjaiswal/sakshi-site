@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "profile-schema.json",
+  "title": "SAKSHI company profile",
+  "description": "One file per profiled health AI deployment, stored as profiles-data/<slug>.json. Profile pages are rendered from these files by build/render-profiles.js and are never hand-edited, so every change to a published finding is a visible commit. Fields follow the four-domain investigative protocol and the governance mechanisms described in the SAKSHI paper. Individual auditors are not named in profiles; profiles are published under the consortium's institutional name and attribution is kept in the certification record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "slug", "company", "system", "deployment_contexts", "status", "hub", "dates", "findings", "company_response", "correction_log"],
+  "properties": {
+    "schema_version": {
+      "description": "Version of this schema the file conforms to.",
+      "const": 1
+    },
+    "slug": {
+      "description": "URL slug for the profile. Must equal the filename without .json. Lowercase letters, digits and hyphens.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "company": {
+      "description": "The company whose claims the profile examines.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "description": "Name as the company uses it publicly." },
+        "legal_name": { "type": "string", "description": "Registered legal name, if different." },
+        "headquarters_country": { "type": "string" },
+        "website": { "type": "string", "format": "uri" },
+        "description": { "type": "string", "description": "One or two neutral sentences on what the company does." }
+      }
+    },
+    "system": {
+      "description": "The specific AI system under review. A company with several products gets one profile per system.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "category", "clinical_autonomy"],
+      "properties": {
+        "name": { "type": "string" },
+        "category": {
+          "type": "string",
+          "description": "Kind of system. Free text; common values: diagnostic imaging, triage, autonomous prescribing, clinical decision support, mental health chatbot."
+        },
+        "intended_use": { "type": "string", "description": "Intended use as stated by the company." },
+        "clinical_autonomy": {
+          "type": "string",
+          "description": "How much of the clinical decision the system makes on its own, as observed in deployment.",
+          "enum": ["decision-support", "semi-autonomous", "autonomous"]
+        },
+        "version_observed": { "type": "string", "description": "Version or release the findings refer to, if the company publishes one. Profiles are updated as the deployed system changes." }
+      }
+    },
+    "deployment_contexts": {
+      "description": "Where the system is deployed. One entry per country or distinct setting examined.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["country", "setting"],
+        "properties": {
+          "country": { "type": "string" },
+          "setting": { "type": "string", "description": "For example: district hospitals, primary care clinics, a state regulatory sandbox." },
+          "sites_reported": { "type": "string", "description": "Number or description of sites, as reported by the company or observed by the team." },
+          "entry_pathway": { "type": "string", "description": "How the system entered this market: procurement, memorandum of understanding, partnership, sandbox, clearance." },
+          "since": { "type": "string", "format": "date", "description": "Earliest documented deployment date, YYYY-MM-DD." }
+        }
+      }
+    },
+    "status": {
+      "description": "Status badge shown on the profile. published: findings are public and the company has been notified. response-window-open: the company's window to submit a structured response is open. company-responded: a response was received and is published with the profile. under-reassessment: specific findings are being reassessed following a response or new evidence. corrected: one or more verified corrections have been appended; see correction_log. withdrawn: the profile has been withdrawn by the editorial board, with the reason recorded in correction_log.",
+      "type": "string",
+      "enum": ["published", "response-window-open", "company-responded", "under-reassessment", "corrected", "withdrawn"]
+    },
+    "hub": {
+      "description": "The regional hub that produced the profile. Individual auditors are not named.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "region": { "type": "string" }
+      }
+    },
+    "dates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["first_published", "last_updated"],
+      "properties": {
+        "first_published": { "type": "string", "format": "date" },
+        "last_updated": { "type": "string", "format": "date" },
+        "next_review": { "type": "string", "format": "date", "description": "Planned date of the next update. Profiles are continuous, not periodic; this is a floor, not a ceiling." }
+      }
+    },
+    "findings": {
+      "description": "Findings in each of the four investigative domains. The profile gives no single numerical score; each domain is assessed on its own terms.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clinical_evidence_audit", "regulatory_pathway_analysis", "financial_disclosure_map", "patient_experience_reporting"],
+      "properties": {
+        "clinical_evidence_audit": {
+          "allOf": [{ "$ref": "#/$defs/domain" }],
+          "properties": {
+            "technical_evaluation": { "$ref": "#/$defs/technical_evaluation" },
+            "reporting_guidelines_applied": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["TRIPOD+AI", "STARD-AI", "DECIDE-AI"] },
+              "description": "Reporting guidelines the team used to judge the completeness of published evidence."
+            }
+          }
+        },
+        "regulatory_pathway_analysis": { "$ref": "#/$defs/domain" },
+        "financial_disclosure_map": { "$ref": "#/$defs/domain" },
+        "patient_experience_reporting": { "$ref": "#/$defs/domain" }
+      }
+    },
+    "company_response": {
+      "description": "The appeals and correction mechanism. On publication the company is notified and given a set window to respond. Its response is published with the profile whether it accepts, disputes, or adds evidence.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["not-yet-notified", "notified", "received", "no-response"],
+          "description": "no-response means the window closed without a reply. Silence is recorded as a finding."
+        },
+        "notified_on": { "type": "string", "format": "date" },
+        "window_closes": { "type": "string", "format": "date" },
+        "received_on": { "type": "string", "format": "date" },
+        "position": {
+          "type": "string",
+          "enum": ["accepts", "disputes", "adds-evidence", "mixed"],
+          "description": "Overall position of the response."
+        },
+        "summary": { "type": "string", "description": "Neutral summary of the response, written by the editorial board." },
+        "full_text": { "type": "string", "description": "The response as submitted, published verbatim." }
+      }
+    },
+    "correction_log": {
+      "description": "Append-only record of every change to published findings, with dates. Verified corrections are appended, not written over the original.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "description", "trigger"],
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "description": { "type": "string", "description": "What changed and why." },
+          "fields_changed": { "type": "array", "items": { "type": "string" }, "description": "JSON paths of the fields that changed, for example findings.clinical_evidence_audit.summary." },
+          "trigger": {
+            "type": "string",
+            "enum": ["company-response", "auditor-update", "editorial-board", "reader-report", "system-update"]
+          }
+        }
+      }
+    },
+    "conflicts_noted": {
+      "description": "Disclosed auditor relationships that fell below the recusal threshold and are therefore noted on the profile.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "editorial_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reviewed_on": { "type": "string", "format": "date" },
+        "board_disclosures_url": { "type": "string", "format": "uri", "description": "Where the editorial board's composition and conflict of interest disclosures for this profile are published." }
+      }
+    }
+  },
+  "$defs": {
+    "domain": {
+      "type": "object",
+      "required": ["summary", "evidence_status", "evidence_examined", "gaps"],
+      "properties": {
+        "summary": { "type": "string", "description": "What the evidence shows, what is missing, and what the gaps mean for this deployment. Plain sentences." },
+        "evidence_status": {
+          "type": "string",
+          "enum": ["independent-evidence-available", "evidence-incomplete", "no-independent-evidence", "company-did-not-engage", "not-yet-examined"],
+          "description": "Whether evidence exists and whether it supports independent evaluation are kept as separate questions; this field answers the second."
+        },
+        "evidence_examined": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["description"],
+            "properties": {
+              "description": { "type": "string" },
+              "source_url": { "type": "string", "format": "uri" },
+              "accessed_on": { "type": "string", "format": "date" }
+            }
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Each item names something the team looked for and did not find, for example a registered trial in the deployment country."
+        },
+        "key_questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["question", "answer"],
+            "properties": {
+              "question": { "type": "string" },
+              "answer": { "type": "string" }
+            }
+          },
+          "description": "The protocol's key investigative questions for this domain, with the team's answers."
+        }
+      }
+    },
+    "technical_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The technical evaluation layer that runs alongside the four domains.",
+      "properties": {
+        "calibration": { "$ref": "#/$defs/technical_item" },
+        "subgroup_fairness": { "$ref": "#/$defs/technical_item" },
+        "robustness": { "$ref": "#/$defs/technical_item" },
+        "dataset_shift": { "$ref": "#/$defs/technical_item" }
+      }
+    },
+    "technical_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reported"],
+      "properties": {
+        "reported": { "type": "boolean", "description": "Whether the company or its published evidence reports this at all." },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# Cloudflare Pages configuration. The dashboard settings take precedence when
+# the project is created there; this file documents the same values.
+name = "sakshi"
+pages_build_output_dir = "site"
+compatibility_date = "2026-01-01"
