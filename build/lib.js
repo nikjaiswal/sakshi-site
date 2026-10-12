@@ -10,7 +10,7 @@ const SITE = {
   email: 'lcp-sakshi@mit.edu',
   // Set to the public GitHub repository URL once the repository exists.
   // When empty, the footer omits the repository link.
-  repoUrl: '',
+  repoUrl: 'https://github.com/nikjaiswal/sakshi-site',
   paper: {
     authors: 'Al-Louzi R, Ali HN, Bank AMC, Celi LA, Cocucci C, Gameiro R, Gorijavolu R, Jaiswal N, et al.',
     title: 'SAKSHI: A Community-Operated Investigative Platform for Accountability in Clinical AI Deployment',

@@ -65,9 +65,9 @@ Editing a static page is editing the HTML in `site/`. The header, status
 line and footer are repeated in each page by hand and in `build/lib.js` for
 rendered profile pages; keep them in step.
 
-Once this repository has a public URL, set `repoUrl` in `build/lib.js` and
-add the same link to the footer of each static page, so every page links to
-its own edit history.
+The footer of every page links to this repository, so each page points at
+its own edit history. The URL is set once as `repoUrl` in `build/lib.js`;
+the static pages in `site/` carry the same link by hand.
 
 ## Adding or correcting a profile
 
