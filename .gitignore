@@ -2,3 +2,5 @@ node_modules/
 # Rendered from profiles-data/ at build time
 site/profiles/
 .DS_Store
+# Local editor/tool config
+.claude/
