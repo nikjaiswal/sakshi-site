@@ -45,18 +45,20 @@ function mark(cls) {
     '<circle cx="16" cy="10" r="3.6" fill="currentColor"/></svg>';
 }
 
-// MIT Critical Data mark: the bar glyph from the lab's logo. Dark bars take
-// the current text color so they read in both themes; one bar is MIT red.
+// MIT Critical Data logo, inlined from site/assets/mit-critical-data-logo.svg
+// (the lab's bar glyph with the "Critical Data" wordmark). Dark elements take
+// the current text color so the logo reads in both themes; one bar is MIT red.
 function cdLogo() {
-  return '<svg class="cd-logo" viewBox="0 0 325 166" width="36" height="18" aria-hidden="true" focusable="false">' +
+  return '<svg class="cd-logo" viewBox="0 0 685 168" width="114" height="28" role="img" aria-label="MIT Critical Data">' +
+    '<text fill="currentColor" stroke="currentColor" stroke-width="2" x="335" y="79" font-size="105" font-family="Helvetica, Arial, sans-serif" font-weight="bold">Critical</text>' +
+    '<text fill="currentColor" stroke="currentColor" stroke-width="2" x="335" y="165" font-size="105" font-family="Helvetica, Arial, sans-serif" font-weight="bold">Data</text>' +
     '<g stroke="currentColor" stroke-width="35" fill="none">' +
     '<path d="M17.5 0v166m57-166v113m57-113v166m57-166v33m58 20v113"/>' +
     '<path d="M188.5 53v113" stroke="var(--mit-red, #a31f34)"/>' +
     '<path d="M229 16.5h92" stroke-width="33"/></g></svg>';
 }
 function orgLink(cls) {
-  return '<a class="' + cls + '" href="https://criticaldata.mit.edu/">' + cdLogo() +
-    '<span class="org-name">MIT Critical Data</span></a>';
+  return '<a class="' + cls + '" href="https://criticaldata.mit.edu/" title="MIT Critical Data">' + cdLogo() + '</a>';
 }
 
 function nav(current) {
