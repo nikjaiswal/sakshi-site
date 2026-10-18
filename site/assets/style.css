@@ -10,6 +10,7 @@
   --accent: #9a3a1e;
   --accent-ink: #ffffff;
   --focus: #1f4e9a;
+  --mit-red: #a31f34;
 
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
@@ -31,6 +32,7 @@
     --accent: #d8795a;
     --accent-ink: #1c1210;
     --focus: #8ab4ff;
+    --mit-red: #d0405a;
   }
 }
 
@@ -95,7 +97,7 @@ small { font-size: 0.875rem; color: var(--muted); }
 /* Layout */
 .wrap {
   width: 100%;
-  max-width: 68rem;
+  max-width: 72rem;
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -119,6 +121,20 @@ main.wrap { padding-block: 2.5rem 4rem; }
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 0.5rem 1.5rem; padding-block: 0.85rem;
 }
+/* MIT Critical Data lockup: glyph plus name. In the header it sits at the
+   right end of the bar on wide screens and is hidden on narrow ones; the
+   footer carries it at every width. */
+.org {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--fg); text-decoration: none; white-space: nowrap;
+}
+.org:hover .org-name { text-decoration: underline; }
+.org-name { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.01em; }
+.cd-logo { width: 2.25rem; height: auto; flex: none; }
+.bar .org { display: none; margin-left: auto; }
+@media (min-width: 66rem) { .bar .org { display: inline-flex; } }
+.org-foot .cd-logo { width: 3rem; }
+.org-foot { align-self: flex-start; margin-top: 0.15rem; }
 .brand {
   display: inline-flex; align-items: center; gap: 0.6rem;
   color: var(--fg); text-decoration: none;

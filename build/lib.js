@@ -45,6 +45,20 @@ function mark(cls) {
     '<circle cx="16" cy="10" r="3.6" fill="currentColor"/></svg>';
 }
 
+// MIT Critical Data mark: the bar glyph from the lab's logo. Dark bars take
+// the current text color so they read in both themes; one bar is MIT red.
+function cdLogo() {
+  return '<svg class="cd-logo" viewBox="0 0 325 166" width="36" height="18" aria-hidden="true" focusable="false">' +
+    '<g stroke="currentColor" stroke-width="35" fill="none">' +
+    '<path d="M17.5 0v166m57-166v113m57-113v166m57-166v33m58 20v113"/>' +
+    '<path d="M188.5 53v113" stroke="var(--mit-red, #a31f34)"/>' +
+    '<path d="M229 16.5h92" stroke-width="33"/></g></svg>';
+}
+function orgLink(cls) {
+  return '<a class="' + cls + '" href="https://criticaldata.mit.edu/">' + cdLogo() +
+    '<span class="org-name">MIT Critical Data</span></a>';
+}
+
 function nav(current) {
   return '<nav class="site-nav" aria-label="Primary"><ul>' + NAV.map(function (item) {
     var active = item[0] === current || (item[0] !== '/' && current.indexOf(item[0]) === 0);
@@ -78,12 +92,12 @@ function renderPage(opts) {
     '<a class="skip" href="#main">Skip to content</a>\n' +
     '<header class="site-header">\n<div class="wrap bar">\n' +
     '<a class="brand" href="/">' + mark('mark') + '<span>SAKSHI</span></a>\n' +
-    nav(opts.path || '/') + '\n</div>\n' +
+    nav(opts.path || '/') + '\n' + orgLink('org') + '\n</div>\n' +
     '<div class="status-line"><div class="wrap"><p><strong>Status.</strong> ' + esc(SITE.status) + '</p></div></div>\n' +
     '</header>\n' +
     '<main id="main" class="wrap" tabindex="-1">\n' + opts.body + '\n</main>\n' +
     '<footer class="site-footer">\n<div class="wrap foot">\n' +
-    '<div class="foot-id">' + mark('mark') + '<p><strong>SAKSHI</strong>, a project of MIT Critical Data, Laboratory for Computational Physiology, MIT.</p></div>\n' +
+    '<div class="foot-id">' + orgLink('org org-foot') + '<p><strong>SAKSHI</strong>, a project of MIT Critical Data, Laboratory for Computational Physiology, MIT.</p></div>\n' +
     '<div class="foot-contact"><p>Contact: <a href="mailto:' + SITE.email + '">' + SITE.email + '</a> ' +
     '<button type="button" class="copy" data-copy="' + SITE.email + '">Copy address</button></p>' +
     repoLink +
@@ -93,4 +107,4 @@ function renderPage(opts) {
     '</body>\n</html>\n';
 }
 
-module.exports = { SITE: SITE, NAV: NAV, esc: esc, mark: mark, cite: cite, renderPage: renderPage };
+module.exports = { SITE: SITE, NAV: NAV, esc: esc, mark: mark, cdLogo: cdLogo, cite: cite, renderPage: renderPage };
