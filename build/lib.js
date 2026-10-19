@@ -29,7 +29,8 @@ const NAV = [
   ['/case-study/', 'Case Study'],
   ['/profiles/', 'Profiles'],
   ['/get-involved/', 'Get Involved'],
-  ['/about/', 'About']
+  ['/about/', 'About'],
+  ['/team/', 'Team']
 ];
 
 function esc(s) {
