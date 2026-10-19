@@ -1,15 +1,13 @@
 'use strict';
-// Shared page layout for the SAKSHI site.
-// Used by build/render-profiles.js to render profile pages. The static pages
-// in site/ carry the same header, status line and footer by hand; keep the
-// three in step when editing this file.
+// Shared page layout for the SAKSHI site. The design system is adapted from
+// the DOJO site by MIT Critical Data (MIT License; see
+// site/assets/vendor/LICENSE-dojo.txt). Used by build/render-profiles.js and
+// by the page assembler; the static pages in site/ are generated from it.
 
 const SITE = {
   name: 'SAKSHI',
   longName: 'Structured Accountability through Knowledge, Scrutiny, and Health Integrity',
   email: 'lcp-sakshi@mit.edu',
-  // Set to the public GitHub repository URL once the repository exists.
-  // When empty, the footer omits the repository link.
   repoUrl: 'https://github.com/nikjaiswal/sakshi-site',
   paper: {
     authors: 'Al-Louzi R, Ali HN, Bank AMC, Celi LA, Cocucci C, Gameiro R, Gorijavolu R, Jaiswal N, et al.',
@@ -22,15 +20,14 @@ const SITE = {
 };
 
 const NAV = [
-  ['/', 'Home'],
-  ['/protocol/', 'The Protocol'],
-  ['/template/', 'Template'],
+  ['/#what-is-sakshi', 'What is SAKSHI'],
+  ['/#protocol', 'Protocol'],
   ['/governance/', 'Governance'],
   ['/case-study/', 'Case Study'],
+  ['/template/', 'Template'],
   ['/profiles/', 'Profiles'],
-  ['/get-involved/', 'Get Involved'],
-  ['/about/', 'About'],
-  ['/team/', 'Team']
+  ['/#team', 'Team'],
+  ['/#contact', 'Contact']
 ];
 
 function esc(s) {
@@ -39,34 +36,49 @@ function esc(s) {
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-// The witness mark: an open eye drawn as a single stroke with a filled pupil.
-function mark(cls) {
-  return '<svg class="' + (cls || 'mark') + '" viewBox="0 0 32 20" width="32" height="20" aria-hidden="true" focusable="false">' +
-    '<path d="M1.5 10C6 3 11 1.5 16 1.5S26 3 30.5 10C26 17 21 18.5 16 18.5S6 17 1.5 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
-    '<circle cx="16" cy="10" r="3.6" fill="currentColor"/></svg>';
+// The witness mark: an open eye, used inside the brand ring.
+function eye() {
+  return '<svg viewBox="0 0 32 20" aria-hidden="true" focusable="false">' +
+    '<path d="M1.5 10C6 3 11 1.5 16 1.5S26 3 30.5 10C26 17 21 18.5 16 18.5S6 17 1.5 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>' +
+    '<circle cx="16" cy="10" r="3.8" fill="currentColor"/></svg>';
 }
+// Kept for callers that still import it.
+function mark() { return eye(); }
 
-// MIT Critical Data logo, inlined from site/assets/mit-critical-data-logo.svg
-// (the lab's bar glyph with the "Critical Data" wordmark). Dark elements take
-// the current text color so the logo reads in both themes; one bar is MIT red.
-function cdLogo() {
-  return '<svg class="cd-logo" viewBox="0 0 685 168" width="114" height="28" role="img" aria-label="MIT Critical Data">' +
-    '<text fill="currentColor" stroke="currentColor" stroke-width="2" x="335" y="79" font-size="105" font-family="Helvetica, Arial, sans-serif" font-weight="bold">Critical</text>' +
-    '<text fill="currentColor" stroke="currentColor" stroke-width="2" x="335" y="165" font-size="105" font-family="Helvetica, Arial, sans-serif" font-weight="bold">Data</text>' +
-    '<g stroke="currentColor" stroke-width="35" fill="none">' +
-    '<path d="M17.5 0v166m57-166v113m57-113v166m57-166v33m58 20v113"/>' +
-    '<path d="M188.5 53v113" stroke="var(--mit-red, #a31f34)"/>' +
-    '<path d="M229 16.5h92" stroke-width="33"/></g></svg>';
+function brand() {
+  return '<a class="brand" href="/" aria-label="SAKSHI home"><span class="brand__mark" aria-hidden="true">' + eye() +
+    '</span><span class="brand__name">SAKSHI</span></a>';
 }
-function orgLink(cls) {
-  return '<a class="' + cls + '" href="https://criticaldata.mit.edu/" title="MIT Critical Data">' + cdLogo() + '</a>';
+function institutionalMark(variant) {
+  return '<a class="institutional-mark institutional-mark--' + variant + '" href="https://criticaldata.mit.edu" target="_blank" rel="noopener noreferrer" aria-label="MIT Critical Data">' +
+    '<img src="/assets/mit-critical-data-logo.svg" alt="" aria-hidden="true"><span>MIT Critical Data</span></a>';
 }
 
 function nav(current) {
-  return '<nav class="site-nav" aria-label="Primary"><ul>' + NAV.map(function (item) {
-    var active = item[0] === current || (item[0] !== '/' && current.indexOf(item[0]) === 0);
-    return '<li><a href="' + item[0] + '"' + (active ? ' aria-current="page"' : '') + '>' + esc(item[1]) + '</a></li>';
-  }).join('') + '</ul></nav>';
+  return '<nav id="primary-navigation" class="site-nav" data-mobile-menu aria-label="Primary navigation">' +
+    NAV.map(function (item) {
+      var active = item[0].indexOf('#') < 0 && current.indexOf(item[0]) === 0;
+      return '<a href="' + item[0] + '"' + (active ? ' aria-current="page"' : '') + '>' + esc(item[1]) + '</a>';
+    }).join('') + '</nav>';
+}
+
+function header(current) {
+  return '<header class="site-header">\n<div class="site-header__inner container">\n' +
+    '<div class="site-header__identity">' + brand() + institutionalMark('header') + '</div>\n' +
+    '<button class="menu-toggle" type="button" data-mobile-menu-toggle aria-label="Toggle navigation" aria-controls="primary-navigation" aria-expanded="false"><span aria-hidden="true">☰</span></button>\n' +
+    nav(current) + '\n</div>\n</header>\n';
+}
+function statusLine() {
+  return '<div class="status-line"><div class="container"><p><strong>Status.</strong> ' + esc(SITE.status) + '</p></div></div>\n';
+}
+function footer() {
+  return '<footer class="site-footer">\n<div class="container site-footer__inner">\n' +
+    '<div class="site-footer__identity">' + brand() + institutionalMark('footer') + '</div>\n' +
+    '<p>SAKSHI, a project of MIT Critical Data, Laboratory for Computational Physiology, MIT. Contact <a href="mailto:' + SITE.email + '">' + SITE.email + '</a>.</p>\n' +
+    '<div class="site-footer__links">' +
+    (SITE.repoUrl ? '<a class="text-link" href="' + esc(SITE.repoUrl) + '" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>' : '') +
+    '<a class="text-link" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0 <span aria-hidden="true">↗</span></a>' +
+    '</div>\n</div>\n</footer>\n';
 }
 
 // Citation block placed on every page that draws on the paper.
@@ -79,35 +91,42 @@ function cite(note) {
     'See <a href="/about/#publications">Publications</a>.' + (note ? ' ' + note : '') + '</p></aside>';
 }
 
+// Inner pages start with an eyebrow, a title and a lede; lift them into the
+// section heading and wrap the rest as prose.
+function innerPage(body) {
+  var m = body.match(/^\s*<p class="eyebrow">([\s\S]*?)<\/p>\s*<h1>([\s\S]*?)<\/h1>\s*(?:<p class="lede">([\s\S]*?)<\/p>)?/);
+  var heading = '', rest = body;
+  if (m) {
+    heading = '<div class="section-heading"><p class="eyebrow">' + m[1] + '</p><h1>' + m[2] + '</h1>' +
+      (m[3] ? '<p class="lede">' + m[3] + '</p>' : '') + '</div>\n';
+    rest = body.slice(m[0].length);
+  }
+  return '<section class="section section--page"><div class="container compact-section">\n' + heading +
+    '<div class="page-prose">\n' + rest + '\n</div>\n</div></section>';
+}
+
 function renderPage(opts) {
-  var title = opts.title ? esc(opts.title) + ' | SAKSHI' : 'SAKSHI';
-  var repoLink = SITE.repoUrl
-    ? '<p><a href="' + esc(SITE.repoUrl) + '">Source and edit history on GitHub</a></p>' : '';
+  var title = opts.title ? esc(opts.title) + ' | SAKSHI' : 'SAKSHI | Structured Accountability through Knowledge, Scrutiny, and Health Integrity';
+  var current = opts.path || '/';
+  var main = opts.raw ? opts.body : innerPage(opts.body);
   return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
     '<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
     '<title>' + title + '</title>\n' +
     '<meta name="description" content="' + esc(opts.description || '') + '">\n' +
-    '<meta name="color-scheme" content="light dark">\n' +
-    '<link rel="stylesheet" href="/assets/style.css">\n' +
     '<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">\n' +
-    '</head>\n<body' + (opts.bodyClass ? ' class="' + esc(opts.bodyClass) + '"' : '') + '>\n' +
-    '<a class="skip" href="#main">Skip to content</a>\n' +
-    '<header class="site-header">\n<div class="wrap bar">\n' +
-    '<a class="brand" href="/">' + mark('mark') + '<span>SAKSHI</span></a>\n' +
-    nav(opts.path || '/') + '\n' + orgLink('org') + '\n</div>\n' +
-    '<div class="status-line"><div class="wrap"><p><strong>Status.</strong> ' + esc(SITE.status) + '</p></div></div>\n' +
-    '</header>\n' +
-    '<main id="main" class="wrap" tabindex="-1">\n' + opts.body + '\n</main>\n' +
-    '<footer class="site-footer">\n<div class="wrap foot">\n' +
-    '<div class="foot-id">' + orgLink('org org-foot') + '<p><strong>SAKSHI</strong>, a project of MIT Critical Data, Laboratory for Computational Physiology, MIT.</p></div>\n' +
-    '<div class="foot-contact"><p>Contact: <a href="mailto:' + SITE.email + '">' + SITE.email + '</a> ' +
-    '<button type="button" class="copy" data-copy="' + SITE.email + '">Copy address</button></p>' +
-    repoLink +
-    '<p>Content licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p></div>\n' +
-    '</div>\n</footer>\n' +
-    '<script src="/assets/site.js"></script>\n' +
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+    '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">\n' +
+    '<link rel="stylesheet" href="/assets/style.css">\n' +
+    '<script src="/assets/site.js" defer></script>\n' +
+    '</head>\n<body>\n' +
+    '<a class="skip-link" href="#main">Skip to content</a>\n' +
+    header(current) +
+    (opts.raw ? '' : statusLine()) +
+    '<main id="main">\n' + main + '\n</main>\n' +
+    footer() +
     '</body>\n</html>\n';
 }
 
-module.exports = { SITE: SITE, NAV: NAV, esc: esc, mark: mark, cdLogo: cdLogo, cite: cite, renderPage: renderPage };
+module.exports = { SITE: SITE, NAV: NAV, esc: esc, mark: mark, eye: eye, cite: cite, renderPage: renderPage };

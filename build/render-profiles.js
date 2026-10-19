@@ -135,10 +135,10 @@ function renderDomain(key, title, blurb, d) {
 }
 
 function renderProfile(p) {
-  var body = '<article class="profile">' +
-    '<p class="eyebrow">Profile</p>' +
+  var body = '<p class="eyebrow">Profile</p>' +
     '<h1>' + esc(p.company.name) + '</h1>' +
     '<p class="lede">' + esc(p.system.name) + (p.system.category ? ', ' + esc(p.system.category) : '') + '</p>' +
+    '<article class="profile">' +
     '<p class="badge badge-status-' + esc(p.status) + '">' + esc(label(STATUS_LABEL, p.status)) + '</p>' +
     dl([
       ['Deployment contexts', '<ul class="plain">' + p.deployment_contexts.map(function (c) {

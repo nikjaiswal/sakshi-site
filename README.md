@@ -27,16 +27,18 @@ contains no sample or placeholder profiles.
 
 ```
 site/                   The website. Plain HTML, one stylesheet, one small script.
-  index.html            Home
-  protocol/             The Protocol
+  index.html            Home: hero, What is SAKSHI, The Protocol, Team, Contact
+  protocol/             The Protocol in full
   template/             Minimum Viable Template (fillable checklist, saves in the browser)
   governance/           Governance
   case-study/           Case Study (hypothetical composite)
   get-involved/         Get Involved
   about/                About, including Publications
   profiles/             Rendered at build time from profiles-data/ (not committed)
-  assets/               style.css, site.js, template.js, mark.svg
+  assets/               style.css, site.js, template.js, mark.svg, the MIT Critical Data logo
+  assets/vendor/        License for the DOJO design system the stylesheet is adapted from
   _headers              Security headers served by Cloudflare Pages
+  _redirects            Old /team/ page redirects to /#team
   404.html
 profiles-data/          One JSON file per profile. Empty.
 profile-schema.json     Documented JSON Schema for profile data files.
@@ -63,8 +65,16 @@ npm run serve          # http://localhost:8080 (needs python3)
 ```
 
 Editing a static page is editing the HTML in `site/`. The header, status
-line and footer are repeated in each page by hand and in `build/lib.js` for
-rendered profile pages; keep them in step.
+line and footer come from `build/lib.js`, which also renders profile pages;
+if you change the layout there, apply the same change to each static page.
+
+## Design
+
+The visual system (palette, type, header, section layout, cards) is adapted
+from the DOJO site by MIT Critical Data, released under the MIT License
+(https://github.com/criticaldata/dojo). The license is kept at
+`site/assets/vendor/LICENSE-dojo.txt`. The Inter typeface loads from Google
+Fonts; everything else is self-hosted.
 
 The footer of every page links to this repository, so each page points at
 its own edit history. The URL is set once as `repoUrl` in `build/lib.js`;
