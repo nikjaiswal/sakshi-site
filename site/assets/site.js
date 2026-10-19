@@ -60,6 +60,10 @@ function initScrollReveal() {
   }, { threshold: 0.12 });
 
   revealItems.forEach((item) => observer.observe(item));
+
+  // Safety net: if intersection events never arrive (background tab, print,
+  // unusual viewports), reveal everything anyway so no content stays hidden.
+  setTimeout(showAll, 1500);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
