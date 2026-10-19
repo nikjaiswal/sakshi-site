@@ -4,6 +4,22 @@
 // site/assets/vendor/LICENSE-dojo.txt). Used by build/render-profiles.js and
 // by the page assembler; the static pages in site/ are generated from it.
 
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+
+// Short content hash appended to asset URLs so browsers and CDNs pick up
+// new versions after a deploy.
+function assetUrl(rel) {
+  try {
+    var file = path.join(__dirname, '..', 'site', rel.replace(/^\//, ''));
+    var hash = crypto.createHash('sha1').update(fs.readFileSync(file)).digest('hex').slice(0, 8);
+    return rel + '?v=' + hash;
+  } catch (e) {
+    return rel;
+  }
+}
+
 const SITE = {
   name: 'SAKSHI',
   longName: 'Structured Accountability through Knowledge, Scrutiny, and Health Integrity',
@@ -118,8 +134,8 @@ function renderPage(opts) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
     '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">\n' +
-    '<link rel="stylesheet" href="/assets/style.css">\n' +
-    '<script src="/assets/site.js" defer></script>\n' +
+    '<link rel="stylesheet" href="' + assetUrl('/assets/style.css') + '">\n' +
+    '<script src="' + assetUrl('/assets/site.js') + '" defer></script>\n' +
     '</head>\n<body>\n' +
     '<a class="skip-link" href="#main">Skip to content</a>\n' +
     header(current) +

@@ -1562,3 +1562,51 @@ ol.gaps textarea { margin-top: 0.5rem; }
 .section-heading--sub { margin-top: clamp(3rem, 6vw, 5rem); margin-bottom: 0; }
 .h2--small { font-size: clamp(1.9rem, 3.2vw, 2.6rem); max-width: 24ch; }
 .section--what-is .blocks { margin-top: 1.5rem; }
+
+/* ---------- Hero animation: the witness eye ---------- */
+.hero__witness { position: relative; width: min(100%, 32rem); margin-inline: auto; }
+.hero__witness .witness { display: block; width: 100%; height: auto; overflow: visible; }
+.hero__witness > p { position: absolute; left: -0.25rem; bottom: -0.4rem; width: 9.5rem; margin: 0; color: var(--color-muted); font-family: var(--font-display); font-size: 1.5rem; line-height: 1.08; }
+.w-ring { fill: none; stroke: var(--color-line); stroke-width: 1; stroke-dasharray: 3 9; transform-box: fill-box; transform-origin: 50% 50%; animation: w-ring-turn 120s linear infinite; }
+.w-beam { stroke: var(--color-terracotta); stroke-width: 1.2; stroke-dasharray: 4 7; opacity: 0.5; animation: w-beam-flow 1.1s linear infinite; }
+.w-node circle { fill: var(--color-paper); stroke: var(--color-line); stroke-width: 1.5; transition: fill 320ms ease, stroke 320ms ease; }
+.w-node text { fill: var(--color-muted); font-family: var(--font-body); font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: fill 320ms ease; }
+.w-node__tick { fill: none; stroke: var(--color-paper); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 320ms ease; }
+.w-node.is-active circle { fill: var(--color-terracotta); stroke: var(--color-terracotta); }
+.w-node.is-active text { fill: var(--color-ink); }
+.w-node.is-done circle { fill: var(--color-sage); stroke: var(--color-sage); }
+.w-node.is-done .w-node__tick { opacity: 1; }
+.w-crease { fill: none; stroke: var(--color-ink); stroke-width: 1.1; stroke-linecap: round; opacity: 0.35; }
+.w-white { fill: var(--color-paper); }
+.w-shade { fill: url(#w-shade-grad); }
+.w-lid { fill: none; stroke: var(--color-ink); stroke-linecap: round; stroke-linejoin: round; }
+.w-lid--upper { stroke-width: 3.2; }
+.w-lid--lower { stroke-width: 1.4; opacity: 0.8; }
+.w-iris { transition: transform 460ms cubic-bezier(0.22, 1.1, 0.3, 1); }
+.w-iris__shadow { fill: rgba(37, 34, 31, 0.18); }
+.w-iris__fill { fill: url(#w-iris-grad); }
+.w-iris__fibres { fill: none; stroke: rgba(255, 253, 249, 0.28); stroke-width: 0.9; stroke-linecap: round; transform-box: fill-box; transform-origin: 50% 50%; animation: w-fibres-turn 60s linear infinite; }
+.w-iris__limbus { fill: none; stroke: #3d1a12; stroke-width: 3; opacity: 0.85; }
+.w-pupil circle { fill: url(#w-pupil-grad); }
+.w-pupil { transform-box: fill-box; transform-origin: 50% 50%; transition: transform 500ms ease; }
+.w-pupil.is-wide { transform: scale(1.25); }
+.w-glint { fill: var(--color-paper); opacity: 0.95; }
+.w-glint--small { opacity: 0.7; }
+.w-lids { transform-box: fill-box; transform-origin: 50% 100%; }
+.w-lids.is-blinking { animation: w-blink 220ms ease-in-out; }
+.w-now-label { fill: var(--color-terracotta); font-family: var(--font-body); font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.w-now { fill: var(--color-ink); font-family: var(--font-display); font-size: 22px; letter-spacing: -0.02em; transition: opacity 220ms ease; }
+.w-now.is-swapping { opacity: 0; }
+@keyframes w-ring-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes w-fibres-turn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes w-beam-flow { from { stroke-dashoffset: 22; } to { stroke-dashoffset: 0; } }
+@keyframes w-blink { 0%, 100% { transform: scaleY(1); } 45%, 55% { transform: scaleY(0.04); } }
+@media (max-width: 760px) {
+  .hero__witness { width: min(92vw, 24rem); margin-top: 1rem; margin-bottom: 2.4rem; }
+  .hero__witness > p { left: 0; bottom: -1rem; width: 8rem; font-size: 1.15rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w-ring, .w-beam, .w-iris__fibres { animation: none; }
+  .w-node circle { fill: var(--color-terracotta); stroke: var(--color-terracotta); }
+  .w-node text { fill: var(--color-ink); }
+}
