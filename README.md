@@ -5,8 +5,6 @@ Scrutiny, and Health Integrity), a community-operated investigative platform
 for accountability in clinical AI deployment. SAKSHI is a project of MIT
 Critical Data, the Laboratory for Computational Physiology at MIT.
 
-Contact: lcp-sakshi@mit.edu
-
 ## Why this repository is public
 
 The website is part of SAKSHI's evidentiary record, and so is this

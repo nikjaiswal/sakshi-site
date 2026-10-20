@@ -21,8 +21,8 @@ process described on the Governance page. A correction is recorded as a new
 entry in the profile's `correction_log` with the date and a description of
 what changed. The original finding is not silently rewritten.
 
-Companies that are the subject of a profile should write to
-lcp-sakshi@mit.edu rather than open a pull request.
+Companies that are the subject of a profile should use the response channel
+stated on their profile rather than open a pull request.
 
 ## Before opening a pull request
 
