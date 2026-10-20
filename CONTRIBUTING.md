@@ -5,7 +5,10 @@ that record, so contributions follow a few rules.
 
 ## What goes where
 
-- `site/` holds the plain HTML, CSS and JavaScript pages. Edit them directly.
+- `content/pages/` holds the source of every page except profiles. Edit the
+  body fragment there and run `npm run build`; the HTML in `site/` is
+  generated and not committed.
+- `site/assets/` holds the stylesheet, scripts and images. Edit them directly.
 - `profiles-data/` holds one JSON file per company profile. Profile pages are
   never hand-edited. Change the data file, and the page is rendered from it.
 - `profile-schema.json` defines the profile format. Changes to the schema

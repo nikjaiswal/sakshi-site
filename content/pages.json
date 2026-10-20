@@ -1,0 +1,67 @@
+[
+  {
+    "file": "home.html",
+    "out": "index.html",
+    "path": "/",
+    "title": "",
+    "description": "SAKSHI is a community-operated investigative platform that documents what health AI companies claim versus what independent evidence supports. A project of MIT Critical Data.",
+    "cite": false,
+    "raw": true
+  },
+  {
+    "file": "protocol.html",
+    "out": "protocol/index.html",
+    "path": "/protocol/",
+    "title": "The Protocol",
+    "description": "The four-domain SAKSHI investigative protocol: clinical evidence audit, regulatory pathway analysis, financial disclosure map, and patient experience reporting.",
+    "cite": "The domains and key investigative questions are taken from Table 2 of the paper."
+  },
+  {
+    "file": "template.html",
+    "out": "template/index.html",
+    "path": "/template/",
+    "title": "Minimum Viable Template",
+    "description": "A condensed three-domain investigative checklist for community auditors of health AI, fillable in the browser and exportable as Markdown or JSON.",
+    "cite": "The checklist is the SAKSHI Minimum Viable Template, a condensed working version of the full SAKSHI checklists."
+  },
+  {
+    "file": "governance.html",
+    "out": "governance/index.html",
+    "path": "/governance/",
+    "title": "Governance",
+    "description": "How SAKSHI stays independent: design principles, auditor certification, conflict of interest disclosure, the institutional firewall, and the appeals and correction process.",
+    "cite": true
+  },
+  {
+    "file": "case-study.html",
+    "out": "case-study/index.html",
+    "path": "/case-study/",
+    "title": "Case Study",
+    "description": "A hypothetical composite case, AfyaScan AI in Uganda, walking through all four domains of the SAKSHI protocol. No real company is depicted.",
+    "cite": "The composite case appears in Section 5 of the paper."
+  },
+  {
+    "file": "get-involved.html",
+    "out": "get-involved/index.html",
+    "path": "/get-involved/",
+    "title": "Get Involved",
+    "description": "Who SAKSHI auditors are, how regional hubs work, the training pipeline, and how to partner with the platform.",
+    "cite": true
+  },
+  {
+    "file": "about.html",
+    "out": "about/index.html",
+    "path": "/about/",
+    "title": "About",
+    "description": "SAKSHI\u2019s relationship to MIT Critical Data, its stated limits, the planned evaluation tests, and publications.",
+    "cite": true
+  },
+  {
+    "file": "404.html",
+    "out": "404.html",
+    "path": "/404",
+    "title": "Page not found",
+    "description": "The requested page does not exist.",
+    "cite": false
+  }
+]

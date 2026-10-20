@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(process.argv[2] || 'site');
+const BASE = (process.env.SITE_BASE || '').replace(/\/$/, '');
 if (!fs.existsSync(root)) {
   console.error('Site directory not found: ' + root + ' (run npm run build first)');
   process.exit(2);
@@ -38,7 +39,11 @@ function resolveTarget(fromFile, href) {
   var frag = href.indexOf('#') >= 0 ? href.split('#')[1] : '';
   var target;
   if (clean === '') target = fromFile;
-  else if (clean.startsWith('/')) target = path.join(root, clean);
+  else if (clean.startsWith('/')) {
+    if (BASE && clean.startsWith(BASE + '/')) clean = clean.slice(BASE.length);
+    else if (BASE && clean === BASE) clean = '/';
+    target = path.join(root, clean);
+  }
   else target = path.resolve(path.dirname(fromFile), clean);
   if (fs.existsSync(target) && fs.statSync(target).isDirectory()) {
     target = path.join(target, 'index.html');

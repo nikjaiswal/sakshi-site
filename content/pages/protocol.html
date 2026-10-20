@@ -1,0 +1,111 @@
+<p class="eyebrow">The Protocol</p>
+<h1>Four investigative domains</h1>
+<p class="lede">Each SAKSHI profile applies the same four-domain protocol. Together the domains cover the accountability surface of a health AI deployment: the evidence behind its claims, how it entered the market, the incentives that shape how it behaves, and its effect on the patients who encounter it.</p>
+
+<p>The protocol follows the model of investigative journalism rather than peer review or certification. Peer review and certification depend on the company's cooperation: access to model documentation, validation data, and deployment records. SAKSHI reaches findings whether or not the company engages, working from the public record, regulatory filings, and interviews. When a company does not respond, that silence is itself recorded as a finding.</p>
+
+<div class="domains">
+  <section class="domain" id="clinical-evidence-audit">
+    <h3>1. Clinical evidence audit</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>Published claims against the actual evidence base: registered clinical trials, peer-reviewed validation studies or their absence, and the distance between marketing language and demonstrated performance.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Are there registered trials?</li>
+            <li>Is validation peer-reviewed?</li>
+            <li>Were study populations representative of the deployment context?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="domain" id="regulatory-pathway-analysis">
+    <h3>2. Regulatory pathway analysis</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>How the product entered the market and what oversight it is subject to, including whether it operates under a sandbox exemption or a clearance, and whether the pathway was designed for the kind of clinical autonomy the product now exercises.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Sandbox exemption or clearance?</li>
+            <li>Does clearance from one jurisdiction imply validation in another?</li>
+            <li>Is post-market surveillance in place?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="domain" id="financial-disclosure-map">
+    <h3>3. Financial disclosure map</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>Investor and board relationships, advisory ties, and the incentive structures that may shape the company's behavior and claims.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Do financial arrangements create misaligned incentives?</li>
+            <li>Does government entanglement suppress independent scrutiny?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="domain" id="patient-experience-reporting">
+    <h3>4. Patient experience reporting</h3>
+    <dl class="qa">
+      <div>
+        <dt>What it examines</dt>
+        <dd>Informed consent, workflow integration, and recourse mechanisms: how patients interact with the system, whether they understand the role of AI in their care, and whether consent is meaningful or performative.</dd>
+      </div>
+      <div>
+        <dt>Key investigative questions</dt>
+        <dd>
+          <ul>
+            <li>Do patients know AI is involved in their care?</li>
+            <li>What happens when the clinician disagrees with the output?</li>
+            <li>How can a patient seek recourse?</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </section>
+</div>
+
+<section id="summary">
+  <h2>The structured summary</h2>
+  <p>Findings across the four domains are drawn together into a structured summary. The profile gives no single numerical score, because a number would imply a precision these judgments do not have. The summary works domain by domain, setting out what evidence exists, what is missing, and what those gaps mean for the deployment under review. The aim is to keep each judgment traceable and comparable from one profile to the next.</p>
+  <p>Comparability across hubs is not assumed to happen on its own. Calibration exercises and a Delphi-based process for setting shared thresholds, described under <a href="/governance/#training">Governance</a>, are meant to keep the four domains assessed on shared grounds as the network of hubs grows. That process is still under development.</p>
+</section>
+
+<section id="technical">
+  <h2>The technical evaluation layer</h2>
+  <p>A technical evaluation layer runs alongside the four domains. It looks at four properties of the deployed model:</p>
+  <ul>
+    <li>calibration;</li>
+    <li>fairness across demographic subgroups;</li>
+    <li>robustness to input variation;</li>
+    <li>performance under dataset shift.</li>
+  </ul>
+  <p>Where they apply, auditors draw on three reporting guidelines. TRIPOD+AI specifies what a clinical prediction model paper needs to disclose. STARD-AI specifies what a diagnostic accuracy study needs to disclose. DECIDE-AI specifies what a clinical decision-support intervention needs to disclose in order to be independently evaluable.</p>
+  <p>Published evidence is judged on how complete and transparent its reporting is, not on the fact of publication. Whether a study exists and whether it supports independent evaluation are kept as separate questions.</p>
+</section>
+
+<section id="in-practice">
+  <h2>The protocol in practice</h2>
+  <p>The <a href="/case-study/">case study</a> walks through all four domains on a hypothetical composite deployment. The data format that a completed profile is recorded in is documented in the <a href="/profiles/profile-schema.json">profile schema</a>.</p>
+</section>
+

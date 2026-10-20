@@ -4,12 +4,16 @@
   "private": true,
   "description": "Static website for SAKSHI, a project of MIT Critical Data. Profile pages are rendered from structured data in profiles-data/.",
   "license": "CC-BY-4.0",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "build": "node build/render-profiles.js",
+    "build": "node build/render-pages.js && node build/render-profiles.js",
+    "build:pages": "SITE_BASE=/sakshi-site npm run build",
     "validate": "html-validate \"site/**/*.html\"",
     "check-links": "node build/check-links.js site",
     "test": "npm run build && npm run validate && npm run check-links",
+    "test:pages": "npm run build:pages && npm run validate && SITE_BASE=/sakshi-site npm run check-links",
     "serve": "python3 -m http.server 8080 --directory site"
   },
   "devDependencies": {

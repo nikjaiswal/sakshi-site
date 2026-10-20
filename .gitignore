@@ -1,5 +1,6 @@
 node_modules/
-# Rendered from profiles-data/ at build time
+# Rendered at build time from content/ and profiles-data/
+site/**/*.html
 site/profiles/
 .DS_Store
 # Local editor/tool config

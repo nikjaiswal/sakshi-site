@@ -18,7 +18,9 @@ regulators can check what the site said at any point in time.
 Profile pages are therefore never hand-edited. Each profile is a structured
 data file in `profiles-data/`, validated against `profile-schema.json` and
 rendered to HTML at build time. A correction to a published finding is a
-change to the data file plus an entry in its `correction_log`.
+change to the data file plus an entry in its `correction_log`. The other
+pages are rendered the same way from `content/pages/`, so every change to
+any page is a visible commit to a source file.
 
 No profiles have been published. `profiles-data/` is empty by design and
 contains no sample or placeholder profiles.
@@ -26,27 +28,27 @@ contains no sample or placeholder profiles.
 ## Repository layout
 
 ```
-site/                   The website. Plain HTML, one stylesheet, one small script.
-  index.html            Home: hero, What is SAKSHI, The Protocol, Team, Contact
-  protocol/             The Protocol in full
-  template/             Minimum Viable Template (fillable checklist, saves in the browser)
-  governance/           Governance
-  case-study/           Case Study (hypothetical composite)
-  get-involved/         Get Involved
-  about/                About, including Publications
-  profiles/             Rendered at build time from profiles-data/ (not committed)
+content/
+  pages/                Source of every page except profiles (HTML body fragments)
+  pages.json            Page list: file, output path, title, description, citation note
+site/                   Build output plus committed static assets
   assets/               style.css, site.js, template.js, mark.svg, the MIT Critical Data logo
   assets/vendor/        License for the DOJO design system the stylesheet is adapted from
   _headers              Security headers served by Cloudflare Pages
-  _redirects            Old /team/ page redirects to /#team
-  404.html
+  _redirects            Old /team/ page redirects to /#team (Cloudflare)
+  .nojekyll             Tells GitHub Pages to serve files as they are
+  *.html, */index.html  Rendered at build time (not committed)
+  profiles/             Rendered at build time from profiles-data/ (not committed)
 profiles-data/          One JSON file per profile. Empty.
 profile-schema.json     Documented JSON Schema for profile data files.
 build/
+  lib.js                Shared page layout, navigation, footer, citation block
+  render-pages.js       Renders content/pages/ into site/
   render-profiles.js    Renders site/profiles/ from profiles-data/. Fails on invalid data.
   check-links.js        Checks that every internal link and fragment resolves.
-  lib.js                Shared page layout used by the renderer.
-.github/workflows/      CI: build, HTML validation, link check on every push.
+.github/workflows/
+  validate.yml          CI: build, HTML validation, link check on every push and pull request
+  deploy-pages.yml      Deploys main to GitHub Pages
 wrangler.toml           Cloudflare Pages output directory.
 ```
 
@@ -57,16 +59,21 @@ Node is used only to render profile pages and to run checks.
 
 ```
 npm ci
-npm run build          # render site/profiles/ from profiles-data/
+npm run build          # render all pages and site/profiles/ into site/
 npm run validate       # html-validate on every page
 npm run check-links    # every internal link and #fragment must resolve
 npm test               # all three
+npm run test:pages     # the same, built for the GitHub Pages subpath
 npm run serve          # http://localhost:8080 (needs python3)
 ```
 
-Editing a static page is editing the HTML in `site/`. The header, status
-line and footer come from `build/lib.js`, which also renders profile pages;
-if you change the layout there, apply the same change to each static page.
+Editing a page is editing its body fragment in `content/pages/` and running
+`npm run build`. The header, status line, footer and citation block come
+from `build/lib.js`.
+
+The site uses root-relative links. Set `SITE_BASE` (for example
+`/sakshi-site`) when building for a site served under a subpath; the
+GitHub Pages workflow does this. Leave it unset for a domain root.
 
 ## Design
 
@@ -91,6 +98,22 @@ the static pages in `site/` carry the same link by hand.
 4. For a correction, change the data and append an entry to `correction_log`
    with the date, a description, and the trigger. Do not rewrite the original
    finding without recording the change.
+
+## Deploying to GitHub Pages
+
+`.github/workflows/deploy-pages.yml` builds the site for the project subpath
+and deploys it to GitHub Pages on every push to `main`, at
+`https://<owner>.github.io/sakshi-site/`. Requirements:
+
+1. The repository must be public (GitHub Pages on a free plan does not
+   serve private repositories).
+2. Under Settings, Pages, set Source to "GitHub Actions". The workflow
+   attempts to enable this itself on first run; if that step fails, set it
+   once by hand and re-run the workflow.
+
+A custom domain can be added under Settings, Pages, Custom domain; the site
+then builds for the domain root, so remove `SITE_BASE` from the workflow's
+build step (use `npm test` instead of `npm run test:pages`).
 
 ## Deploying to Cloudflare Pages
 

@@ -20,6 +20,10 @@ function assetUrl(rel) {
   }
 }
 
+// Base path for a site served under a subpath (GitHub Pages project sites
+// live at https://<user>.github.io/<repo>/). Empty for a domain root.
+const BASE = (process.env.SITE_BASE || '').replace(/\/$/, '');
+
 const SITE = {
   name: 'SAKSHI',
   longName: 'Structured Accountability through Knowledge, Scrutiny, and Health Integrity',
@@ -125,7 +129,7 @@ function renderPage(opts) {
   var title = opts.title ? esc(opts.title) + ' | SAKSHI' : 'SAKSHI | Structured Accountability through Knowledge, Scrutiny, and Health Integrity';
   var current = opts.path || '/';
   var main = opts.raw ? opts.body : innerPage(opts.body);
-  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
+  var html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
     '<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
     '<title>' + title + '</title>\n' +
@@ -143,6 +147,9 @@ function renderPage(opts) {
     '<main id="main">\n' + main + '\n</main>\n' +
     footer() +
     '</body>\n</html>\n';
+  // Prefix every root-relative link and asset reference with the base path.
+  if (BASE) html = html.replace(/(href|src)="\/(?!\/)/g, '$1="' + BASE + '/');
+  return html;
 }
 
-module.exports = { SITE: SITE, NAV: NAV, esc: esc, mark: mark, eye: eye, cite: cite, renderPage: renderPage };
+module.exports = { BASE: BASE, SITE: SITE, NAV: NAV, esc: esc, mark: mark, eye: eye, cite: cite, renderPage: renderPage };
