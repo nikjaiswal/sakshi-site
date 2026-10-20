@@ -29,6 +29,9 @@ contains no sample or placeholder profiles.
 content/
   pages/                Source of every page except profiles (HTML body fragments)
   pages.json            Page list: file, output path, title, description, citation note
+  partials/             Generated fragments pulled in with <!-- include:name --> (the world map)
+tools/
+  make-world-map.py     Regenerates the contributors map from Natural Earth land data
 site/                   Build output plus committed static assets
   assets/               style.css, site.js, template.js, mark.svg, the MIT Critical Data logo
   assets/vendor/        License for the DOJO design system the stylesheet is adapted from

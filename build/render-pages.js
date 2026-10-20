@@ -12,6 +12,10 @@ const pages = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'pages.json'
 
 pages.forEach(function (p) {
   var body = fs.readFileSync(path.join(ROOT, 'content', 'pages', p.file), 'utf8').replace(/\n$/, '');
+  // <!-- include:name --> pulls in content/partials/name.svg (generated fragments).
+  body = body.replace(/<!-- include:([a-z0-9-]+) -->/g, function (m, name) {
+    return fs.readFileSync(path.join(ROOT, 'content', 'partials', name + '.svg'), 'utf8').trim();
+  });
   if (p.cite) body += '\n' + lib.cite(typeof p.cite === 'string' ? p.cite : '');
   var out = path.join(ROOT, 'site', p.out);
   fs.mkdirSync(path.dirname(out), { recursive: true });

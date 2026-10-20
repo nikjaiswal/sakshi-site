@@ -45,7 +45,7 @@ const NAV = [
   ['/case-study/', 'Case Study'],
   ['/template/', 'Template'],
   ['/profiles/', 'Profiles'],
-  ['/#team', 'Team'],
+  ['/#team', 'Contributors'],
   ['/#contact', 'Contact']
 ];
 
