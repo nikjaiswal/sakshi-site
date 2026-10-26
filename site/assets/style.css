@@ -1618,3 +1618,20 @@ ol.gaps textarea { margin-top: 0.5rem; }
   .w-node circle { fill: var(--color-terracotta); stroke: var(--color-terracotta); }
   .w-node text { fill: var(--color-ink); }
 }
+
+/* ---------- Accessibility polish (audit 2026-10-25) ---------- */
+/* Labels on the dark Protocol section: terracotta on ink was 2.2:1; the lighter tint reads at AA. */
+.section--architecture .flow-step > span,
+.section--architecture .flow-line,
+.section--architecture .evidence-strip__label,
+.section--architecture .paper-item__index,
+.section--architecture .paper-item__toggle,
+.section--architecture .paper-card__index { color: #d58673; }
+.paper-card .paper-card__meta { color: rgba(255, 253, 249, 0.8); }
+/* Focus ring: 3:1 against light surfaces, a pale tint on dark and sage surfaces. */
+:focus-visible { outline: 3px solid var(--color-terracotta); outline-offset: 4px; }
+.section--architecture :focus-visible, .section--contact :focus-visible { outline-color: #f0c4b8; }
+/* Standalone links and marks reach the 24px minimum target size. */
+.paper-card__links a, .paper-item__content a, .text-link, .team-profile__links a, .team-notes a { display: inline-block; padding-block: 0.3rem; }
+.institutional-mark { padding-block: 0.4rem; }
+.site-footer__links .text-link { padding-block: 0.45rem; }
