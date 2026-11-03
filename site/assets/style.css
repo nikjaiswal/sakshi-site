@@ -1528,3 +1528,5 @@ h1, h2, h3, .research-library__header h3 { text-wrap: balance; }
   h1 { max-width: 12ch; font-size: clamp(2.4rem, 11vw, 3.6rem); }
   h2 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
 }
+.section-heading h2 { max-width: 20ch; }
+.contact-layout h2 { max-width: 12ch; }
